@@ -1,8 +1,17 @@
 /* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React from "react"
 
 const Button = (props) => {
-  return <input type="submit" value={props.value} className={'btn ' + props.className} />
+  return (
+    <button
+      type="submit"
+      className={"btn " + props.className}
+      onClick={props.onClick}
+    >
+      {props.value}
+    </button>
+  )
 }
 
 export default Button

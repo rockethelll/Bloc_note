@@ -1,15 +1,22 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from "react"
+import Showdown from "showdown"
 
-const NoteDisplay = () => {
+const NoteDisplay = ({ title, content }) => {
+  
+  const converter = new Showdown.Converter()
+  let titleInMd = converter.makeHtml(title)
+  let contentInMd = converter.makeHtml(content)
+
+  const createMarkup = (item) => {
+    return { __html: item }
+  }
+
   return (
     <div className="note-display">
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat,
-        repellat? Nam nisi rerum unde mollitia libero non, debitis facere
-        perspiciatis quod eos ratione ad nulla! Perspiciatis commodi nemo quasi
-        ullam!
-      </p>
+      <h1 dangerouslySetInnerHTML={createMarkup(titleInMd)}></h1>
+      <p dangerouslySetInnerHTML={createMarkup(contentInMd)}></p>
     </div>
   )
 }
